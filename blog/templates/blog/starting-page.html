@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} 
+My Blog 
+{% endblock %}
+
+
+{% block content %}
+<section id="welcome" style="height: 50vh;
+width: 100%;
+background-color: darkslategrey;
+border-radius: 20px;">
+    <header style="height: 30vh;
+    width: 30vh;
+    border: 1px solid red;
+    border-radius: 15px;
+    position: relative;
+    left: 50px;
+    top: 50px;
+    padding-bottom: 20px;">
+        <img src="{% static 'blog/images/webprofile.png' %}" alt="Trinadh - Author" style="height: 300px;width: 300px;border: 1px solid gold;">
+        <h2>Trinadh's BLOG</h2>
+    </header>
+    <p>Hi, I am Trinadh and I love to Blog about Tech and the World</p>
+</section>
+<section id="latest-posts" style="height: 50vh;
+width: 100%;
+background-color: rgb(194, 97, 161);
+border-radius: 20px;">
+    <h2>My Latest Posts</h2>
+    <ul style="display: flex;flex-direction: row;">
+       {% for post in posts %}
+        {% include 'blog/includes/post.html' %}
+       {% endfor %}
+    </ul>
+</section>
+<section id="about" style="height: 50vh;
+width: 100%;
+background-color: rgb(147, 223, 96);
+border-radius: 20px;">
+    <h2>What I do</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores possimus dignissimos repudiandae minima. Necessitatibus, id tempora laudantium impedit, laborum quas deserunt consequatur magni aliquid assumenda distinctio. Consectetur corporis quod veniam.</p>
+    <p>My goal is to become a python developer and teach all about python and robotics and artificial intelligence.</p>
+</section>
+<h1 style="text-align: center;color: brown;">Welcome to My BLOG.</h1>
+{% endblock %}

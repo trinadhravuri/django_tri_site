@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{post.title|upper}}
+{% endblock%}
+
+{% block content %}
+<style>
+    .form-control{
+        margin-bottom:1rem;
+        font-weight:bold;
+        display: block;
+        text-align:center;
+        justify-content:center;
+    }
+    .errorlist{
+        list-style: none;
+        margin:0.5rem;
+        color:red;  
+    }
+</style>
+<section style="width: 80%;background-color: grey;border-radius: 30px;">
+    <h2 style="font-size: 30px;color: crimson;">{{post.title|title}}</h2>
+    <div>
+        {% for tag in post_tags %}
+        <h2 style="color:red;">{{ tag.caption }}</h2>
+        {% endfor %}
+    </div>
+    <article style="display: block;justify-content: center;">
+        <img src="{{ post.image.url }}" alt="post title" style="height: 100px;width: 100px;">
+        <address>By <a href="mailto:{{post.author.email}}">{{post.author}}</a></address>
+        <div>Last Updated <time>{{post.date|date:"d m y"}}</time></div>
+    </article>
+    <div>
+        <form action="{% url "read-later" %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{post.id}}" name="post_id">
+        <button>
+            {% if saved_for_later %}
+            Remove from saved list
+            {% else %}
+            Read Later
+            {% endif %}
+        </button>
+        </form>
+    </div>
+</section>
+{% if Comment_Form %}
+<div>
+    <h2>Saving the comment failed!</h2>
+    <p>please check the comment form below the post and fix your errors. </p>
+</div>
+{% endif %}
+<main style="display: flex;flex-direction: column;">
+    <p style="background-color: azure;">{{post.excerpt}}</p>
+    <p>{{post.content|linebreaks}}</p>
+</main>
+<section>
+    <ul>
+        {% for comment in comments %}
+        <li>
+        <h2>{{comment.user_name}}</h2>
+        <h3>{{comment.comment_text|linebreaks}}</h3>
+        <h2>{{comment.rating}}</h2>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<div>
+    <form action="{% url "single-post-page" post.slug %}", method="POST">
+        {% csrf_token %}
+        {% for comment_field in Comment_Form %}
+        <div class="form-control">
+            {{comment_field.label_tag}}
+            {{comment_field}}
+            {{comment_field.errors}}
+        </div>
+        {% endfor %}
+        <button style="background:white;", type="submit">Save Comment</button>
+    </form>
+</div>
+<script>
+    
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css_files %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header style="display: flex;flex-direction: row auto;flex-wrap: wrap;justify-content: space-around; ">
+        <h1><a href="{% url 'starting-page'%}" style="text-decoration: none;color: brown;">Trinadh's <span style="color: crimson;">BLOG</span></a></h1>
+        <nav>
+            <a href="{% url 'posts'%}" style="text-decoration: none;color: brown;font-size: 20px;">All <span style="color: crimson;">Posts</span></a>
+            <a href="{% url 'read-later'%}" style="text-decoration: none;color: brown;font-size: 20px;"><span style="color: blue;">Stored Posts</span></a>
+        </nav>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+My Blog
+{% endblock %}
+
+{% block content %}
+<section id="all-posts">
+    <h2 style="text-align: center;font-size: 50px;">My collected posts</h2>
+
+    <ul style="display: flex;flex-direction: column;flex-wrap: wrap;align-items: center;">
+       {% for post in posts %}
+            {% include 'blog/includes/post.html' %}
+       {% endfor %}
+    </ul>
+</section>
+{% endblock %}

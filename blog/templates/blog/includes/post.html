@@ -1,0 +1,19 @@
+
+<style>
+    li:hover{
+        background-color: azure;
+        border: 2px solid rgba(146, 137, 145, 0.75);
+        border-radius: 30px;
+    }
+</style>
+<li style="text-align: center; height: 40vh;width: 50vh;list-style: none;justify-content:center; align-items: center;padding-bottom: 10px;overflow-y: hidden;">
+    <article class="post">
+        <a href="{% url 'single-post-page' post.slug %}" style="text-decoration: none;">
+            <img src="{{post.image.url}}" alt="{{post.title}}" style="height: 100px;width: 100px;border-radius: 50%;">
+            <div class="post__content" style="text-decoration: none;">
+                <h3 style="color: crimson;">{{post.title|upper}}</h3>
+                <p style="color: rgb(10, 55, 56);">{{post.excerpt|title}}</p>
+            </div>
+        </a>
+    </article>
+</li>
